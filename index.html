@@ -40,15 +40,32 @@
             color: pink;
             font-weight: bold;
         }
+        #app {
+            display: none;
+        }
+        #heart {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column-reverse;
+            span:nth-child(2) {
+                font-size: 200px;
+                cursor: pointer;
+            }
+        }
     </style>
 </head>
 <body>
+    <h1 id="heart">
+        <span>Touch me</span>
+        <span>🩷</span>
+    </h1>
     <audio id="romanticAudio">
-        <source src="https://govindamandal.github.io/happy-valentine-day/valentinex27s-day-music-romantic-love-piano-background-theme.mp3" type="audio/mpeg">
+        <source src="./valentinex27s-day-music-romantic-love-piano-background-theme.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     <audio id="yesAudio">
-        <source src="https://govindamandal.github.io/happy-valentine-day/a-short-acoustic-guitar-love-song.mp3" type="audio/mpeg">
+        <source src="./a-short-acoustic-guitar-love-song.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     <div class="container" id="app">
@@ -61,9 +78,13 @@
     </div>
     <script>
         const aud = document.getElementById('romanticAudio');
-        (async () => {
-            await aud.play();
-        })();
+        const yesAud = document.getElementById('yesAudio');
+        const heart = document.getElementById('heart');
+        heart.addEventListener('click', () => {
+            aud.play();
+            heart.style.display = 'none';
+            document.getElementById('app').style.display = 'block';
+        });
         const NO_PHRASES = [
             "No 💔",
             "Pretty please? 🥺",
@@ -85,7 +106,6 @@
             question.innerHTML = "<div class='message'>Yay!!! I knew it! 💖🎉🥰</div>";
             yesButton.style.display = "none";
             noButton.style.display = "none";
-            const yesAud = document.getElementById('yesAudio');
             aud.pause();
             yesAud.play();
         });
