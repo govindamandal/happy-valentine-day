@@ -42,7 +42,7 @@
     </style>
 </head>
 <body>
-    <audio id="romanticAudio" autoplay>
+    <audio id="romanticAudio">
         <source src="./valentinex27s-day-music-romantic-love-piano-background-theme.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -55,6 +55,10 @@
         </div>
     </div>
     <script>
+        const aud = document.getElementById('romanticAudio');
+        (() => {
+            aud.play();
+        })();
         const NO_PHRASES = [
             "No 💔",
             "Pretty please? 🥺",
