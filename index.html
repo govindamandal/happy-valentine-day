@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='90' font-size='90'>❤️</text></svg>">
-    <title>Happy Valentine Day 💐🥀🌹</title>
+    <title>Valentine's Day Invitation</title>
     <style>
         body {
             margin: 0;
@@ -61,11 +61,11 @@
         <span>🩷</span>
     </h1>
     <audio id="romanticAudio">
-        <source src="https://govindamandal.github.io/happy-valentine-day/valentinex27s-day-music-romantic-love-piano-background-theme.mp3" type="audio/mpeg">
+        <source src="./valentinex27s-day-music-romantic-love-piano-background-theme.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     <audio id="yesAudio">
-        <source src="https://govindamandal.github.io/happy-valentine-day/a-short-acoustic-guitar-love-song.mp3" type="audio/mpeg">
+        <source src="./a-short-acoustic-guitar-love-song.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     <div class="container" id="app">
@@ -80,10 +80,12 @@
         const aud = document.getElementById('romanticAudio');
         const yesAud = document.getElementById('yesAudio');
         const heart = document.getElementById('heart');
+        let lastPlayed = null;
         heart.addEventListener('click', () => {
             aud.play();
             heart.style.display = 'none';
             document.getElementById('app').style.display = 'block';
+            lastPlayed = aud;
         });
         const NO_PHRASES = [
             "No 💔",
@@ -108,12 +110,21 @@
             noButton.style.display = "none";
             aud.pause();
             yesAud.play();
+            lastPlayed = yesAud;
         });
 
         noButton.addEventListener("click", () => {
             noClicks++;
             yesButton.style.fontSize = `${(noClicks * 20) + 16}px`;
             noButton.textContent = NO_PHRASES[Math.min(noClicks - 1, NO_PHRASES.length - 1)];
+        });
+
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                lastPlayed?.pause();
+            } else {
+                lastPlayed?.play();
+            }
         });
     </script>
 </body>
