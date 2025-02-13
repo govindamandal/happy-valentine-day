@@ -98,7 +98,7 @@
                 heart.style.display = 'none';
                 document.getElementById('app').style.display = 'block';
                 lastPlayed = aud;
-            }, 800);
+            }, 500);
         });
         const NO_PHRASES = [
             "No 💔",
@@ -115,12 +115,16 @@
         const noButton = document.getElementById("noButton");
         const image = document.getElementById("image");
         const question = document.getElementById("question");
+        const heartSpan = document.getElementById("heart-span");
 
         yesButton.addEventListener("click", async () => {
-            image.src = "https://media.tenor.com/f1xnRxTRxLAAAAAj/bears-with-kisses-bg.gif";
-            question.innerHTML = "<div class='message'>Yay!!! I knew it! 💖🎉🥰</div>";
-            yesButton.style.display = "none";
-            noButton.style.display = "none";
+            yesButton.style.backgroundColor = "#3cfa3c";
+            setTimeout(() => {
+                image.src = "https://media.tenor.com/f1xnRxTRxLAAAAAj/bears-with-kisses-bg.gif";
+                question.innerHTML = "<div class='message'>Yay!!! I knew it! 💖🎉🥰</div>";
+                yesButton.style.display = "none";
+                noButton.style.display = "none";
+            }, 500);
             aud.pause();
             yesAud.play();
             lastPlayed = yesAud;
@@ -130,6 +134,10 @@
             noClicks++;
             yesButton.style.fontSize = `${(noClicks * 20) + 16}px`;
             noButton.textContent = NO_PHRASES[Math.min(noClicks - 1, NO_PHRASES.length - 1)];
+            noButton.style.backgroundColor = '#c00399';
+            setTimeout(() => {
+                noButton.style.backgroundColor = 'red';
+            }, 500);
         });
 
         document.addEventListener("visibilitychange", () => {
@@ -140,22 +148,8 @@
             }
         });
 
-        document.addEventListener("click", function (event) {
-            if (event.target.id === 'heart-span') {
-                event.target.innerHTML = '💖';
-            }
-            if (event.target.id === 'noButton') {
-                event.target.style.backgroundColor = '#c00399';
-                setTimeout(() => {
-                    event.target.style.backgroundColor = 'red';
-                }, 500);
-            }
-            
-
-            // Remove the ripple after animation
-            setTimeout(() => {
-                // ripple.remove();
-            }, 800);
+        heartSpan.addEventListener("click", function (event) {
+            heartSpan.innerHTML = '💖';
         }, true);
     </script>
 </body>
