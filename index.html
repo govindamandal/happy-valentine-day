@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='90' font-size='90'>❤️</text></svg>">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='90' font-size='90'>❤️</text></svg>">
     <title>Happy Valentine Day 💐🥀🌹</title>
     <style>
         body {
@@ -15,11 +17,13 @@
             height: 100vh;
             text-align: center;
         }
+
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
+
         .button {
             font-size: 16px;
             margin: 10px;
@@ -29,25 +33,31 @@
             cursor: pointer;
             color: white;
         }
+
         .yes-button {
             background-color: green;
         }
+
         .no-button {
             background-color: red;
         }
+
         .message {
             font-size: 48px;
             color: pink;
             font-weight: bold;
         }
+
         #app {
             display: none;
         }
+
         #heart {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column-reverse;
+
             span:nth-child(2) {
                 font-size: 200px;
                 cursor: pointer;
@@ -55,10 +65,11 @@
         }
     </style>
 </head>
+
 <body>
     <h1 id="heart">
         <span>Touch me</span>
-        <span>🩷</span>
+        <span id="heart-span">🩷</span>
     </h1>
     <audio id="romanticAudio">
         <source src="./valentinex27s-day-music-romantic-love-piano-background-theme.mp3" type="audio/mpeg">
@@ -83,9 +94,11 @@
         let lastPlayed = null;
         heart.addEventListener('click', () => {
             aud.play();
-            heart.style.display = 'none';
-            document.getElementById('app').style.display = 'block';
-            lastPlayed = aud;
+            setTimeout(() => {
+                heart.style.display = 'none';
+                document.getElementById('app').style.display = 'block';
+                lastPlayed = aud;
+            }, 800);
         });
         const NO_PHRASES = [
             "No 💔",
@@ -102,7 +115,7 @@
         const noButton = document.getElementById("noButton");
         const image = document.getElementById("image");
         const question = document.getElementById("question");
-        
+
         yesButton.addEventListener("click", async () => {
             image.src = "https://media.tenor.com/f1xnRxTRxLAAAAAj/bears-with-kisses-bg.gif";
             question.innerHTML = "<div class='message'>Yay!!! I knew it! 💖🎉🥰</div>";
@@ -126,6 +139,25 @@
                 lastPlayed?.play();
             }
         });
+
+        document.addEventListener("click", function (event) {
+            if (event.target.id === 'heart-span') {
+                event.target.innerHTML = '💖';
+            }
+            if (event.target.id === 'noButton') {
+                event.target.style.backgroundColor = '#c00399';
+                setTimeout(() => {
+                    event.target.style.backgroundColor = 'red';
+                }, 500);
+            }
+            
+
+            // Remove the ripple after animation
+            setTimeout(() => {
+                // ripple.remove();
+            }, 800);
+        }, true);
     </script>
 </body>
+
 </html>
