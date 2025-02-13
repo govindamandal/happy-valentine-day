@@ -43,7 +43,11 @@
 </head>
 <body>
     <audio id="romanticAudio">
-        <source src="./valentinex27s-day-music-romantic-love-piano-background-theme.mp3" type="audio/mpeg">
+        <source src="https://govindamandal.github.io/happy-valentine-day/valentinex27s-day-music-romantic-love-piano-background-theme.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="yesAudio">
+        <source src="https://govindamandal.github.io/a-short-acoustic-guitar-love-song.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     <div class="container" id="app">
@@ -56,8 +60,8 @@
     </div>
     <script>
         const aud = document.getElementById('romanticAudio');
-        (() => {
-            aud.play();
+        (async () => {
+            await aud.play();
         })();
         const NO_PHRASES = [
             "No 💔",
@@ -75,11 +79,14 @@
         const image = document.getElementById("image");
         const question = document.getElementById("question");
         
-        yesButton.addEventListener("click", () => {
+        yesButton.addEventListener("click", async () => {
             image.src = "https://media.tenor.com/f1xnRxTRxLAAAAAj/bears-with-kisses-bg.gif";
             question.innerHTML = "<div class='message'>Yay!!! 💖🎉</div>";
             yesButton.style.display = "none";
             noButton.style.display = "none";
+            const yesAud = document.getElementById('yesAudio');
+            aud.pause();
+            yesAud.play();
         });
 
         noButton.addEventListener("click", () => {
