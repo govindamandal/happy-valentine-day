@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Invitation</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .button {
+            font-size: 16px;
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+        }
+        .yes-button {
+            background-color: green;
+        }
+        .no-button {
+            background-color: red;
+        }
+        .message {
+            font-size: 48px;
+            color: pink;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="app">
+        <img id="image" src="https://media.tenor.com/VIChDQ6ejRQAAAAj/jumping-bear-hearts-no-png.gif" />
+        <h1 id="question">Will you be my Valentine? 💘</h1>
+        <div>
+            <button id="yesButton" class="button yes-button">Yes</button>
+            <button id="noButton" class="button no-button">No</button>
+        </div>
+    </div>
+    <script>
+        const NO_PHRASES = [
+            "No 💔",
+            "Pretty please? 🥺",
+            "But we'd be so cute together! 💕",
+            "One more chance, pookie?",
+            "Don't break my heart :(",
+            "What about a maybe?",
+            "Please don't do this to me, I'm fragile"
+        ];
+
+        let noClicks = 0;
+        const yesButton = document.getElementById("yesButton");
+        const noButton = document.getElementById("noButton");
+        const image = document.getElementById("image");
+        const question = document.getElementById("question");
+        
+        yesButton.addEventListener("click", () => {
+            image.src = "https://media.tenor.com/f1xnRxTRxLAAAAAj/bears-with-kisses-bg.gif";
+            question.innerHTML = "<div class='message'>Yay!!! I knew it 💖🎉🥰</div>";
+            yesButton.style.display = "none";
+            noButton.style.display = "none";
+        });
+
+        noButton.addEventListener("click", () => {
+            noClicks++;
+            yesButton.style.fontSize = `${(noClicks * 20) + 16}px`;
+            noButton.textContent = NO_PHRASES[Math.min(noClicks - 1, NO_PHRASES.length - 1)];
+        });
+    </script>
+</body>
+</html>
