@@ -50,7 +50,35 @@
             <button id="noButton" class="button no-button">No</button>
         </div>
     </div>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script src="./js/app.js"></script>
+    <script>
+        const NO_PHRASES = [
+            "No 💔",
+            "Pretty please? 🥺",
+            "But we'd be so cute together! 💕",
+            "One more chance, pookie?",
+            "Don't break my heart :(",
+            "What about a maybe?",
+            "Please don't do this to me, I'm fragile"
+        ];
+
+        let noClicks = 0;
+        const yesButton = document.getElementById("yesButton");
+        const noButton = document.getElementById("noButton");
+        const image = document.getElementById("image");
+        const question = document.getElementById("question");
+        
+        yesButton.addEventListener("click", () => {
+            image.src = "https://media.tenor.com/f1xnRxTRxLAAAAAj/bears-with-kisses-bg.gif";
+            question.innerHTML = "<div class='message'>Yay!!! 💖🎉</div>";
+            yesButton.style.display = "none";
+            noButton.style.display = "none";
+        });
+
+        noButton.addEventListener("click", () => {
+            noClicks++;
+            yesButton.style.fontSize = `${(noClicks * 20) + 16}px`;
+            noButton.textContent = NO_PHRASES[Math.min(noClicks - 1, NO_PHRASES.length - 1)];
+        });
+    </script>
 </body>
 </html>
